@@ -1,0 +1,18 @@
+.btn-icon:not(.active) {
+  &:hover {
+    background: #0078C1 !important;
+    color: whitesmoke !important;
+
+    i {
+      color: whitesmoke !important;
+
+    }
+  }
+}
+
+.btn.btn-light.active {
+
+  background: #0078C1 !important;
+  color: whitesmoke !important;
+
+}

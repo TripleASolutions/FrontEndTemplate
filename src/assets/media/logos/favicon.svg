@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_814" data-name="Rectangle 814" width="64" height="64" transform="translate(-3766 -3619)" fill="none"/>
+    </clipPath>
+    <linearGradient id="linear-gradient" x1="0.5" y1="0.465" x2="0.5" y2="0.777" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f27c00"/>
+      <stop offset="1" stop-color="#e13510"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="0.681" x2="0.5" y2="-0.026" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" y1="184.705" y2="183.998" xlink:href="#linear-gradient-2"/>
+  </defs>
+  <g id="Mask_Group_11" data-name="Mask Group 11" transform="translate(3766 3619)" clip-path="url(#clip-path)">
+    <g id="ramp-icon" transform="translate(-3766 -3617.996)">
+      <g id="Group_22" data-name="Group 22" transform="translate(13.266)">
+        <path id="Path_62" data-name="Path 62" d="M74.779,75.376H45.052V13.384h7.3V68.071H68.889Z" transform="translate(-45.051 -13.384)" fill="url(#linear-gradient)"/>
+      </g>
+      <g id="Group_23" data-name="Group 23" transform="translate(13.266 13.444)" opacity="0.277" style="mix-blend-mode: multiply;isolation: isolate">
+        <rect id="Rectangle_12" data-name="Rectangle 12" width="7.305" height="21.184" fill="url(#linear-gradient-2)"/>
+      </g>
+      <g id="Group_24" data-name="Group 24" transform="translate(13.266 6.75)" opacity="0.163" style="mix-blend-mode: multiply;isolation: isolate">
+        <rect id="Rectangle_13" data-name="Rectangle 13" width="7.305" height="8.824" fill="url(#linear-gradient-3)"/>
+      </g>
+      <g id="Group_25" data-name="Group 25" transform="translate(0 0)">
+        <path id="Path_63" data-name="Path 63" d="M50.332,13.386v6.748H94.314V68.071H91.886L81.2,54.8a16.861,16.861,0,0,0-11.18-29.494H37.065l5.363,6.651h27.59a10.223,10.223,0,0,1,0,20.447H68.343l5.071,6.308.013,0L86.853,75.376h14.212V13.386Z" transform="translate(-37.065 -13.384)" fill="#f27c00"/>
+      </g>
+    </g>
+  </g>
+</svg>

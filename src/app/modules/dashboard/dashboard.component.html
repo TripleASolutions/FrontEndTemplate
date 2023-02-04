@@ -1,0 +1,41 @@
+<div class="card card-custom gutter-b">
+  <div class="card-body">
+    <form [formGroup]="filterGroup">
+      <div class="row">
+        <div class="col-md-3">
+          <form-group-material
+            inputPlaceholder="Search with  Mobile Number"
+            fieldLabel="Mobile Number"
+            controlName="mobileNo"
+            [OnlyNumber]="true"
+             (keyup)="dashboard.patchFilter(filterGroup.value)"
+          ></form-group-material>
+        </div>
+        <div class="col-md-3">
+          <form-group-material
+            inputPlaceholder="Enter User Name"
+            fieldLabel="User Name"
+            controlName="userName"
+                   [FormGroup]="filterGroup"
+           ></form-group-material>
+        </div>
+        <div class="col-md-3" style="align-self: center">
+          <form-group-material
+            inputPlaceholder="Choose Status"
+            fieldLabel="Choose Status "
+            controlName="active"
+            inputType="dropdown"
+            [dataSource]="statusList"
+            (changeValue)="dashboard.patchFilter(filterGroup.value)"
+          ></form-group-material>
+        </div>
+      </div>
+    </form>
+    <ng-container *ngIf="dashboard">
+      <app-dynamic-container
+        title="Dashboard"
+        [service]="dashboard"
+      ></app-dynamic-container>
+    </ng-container>
+  </div>
+</div>

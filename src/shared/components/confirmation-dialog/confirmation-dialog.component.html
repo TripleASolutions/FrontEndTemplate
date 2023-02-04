@@ -1,0 +1,26 @@
+<div class="shake"  #dialogConfirm>
+  <div class="card-header">
+    <div class="card-title h4">{{ Title }}</div>
+  </div>
+  <div class="card card-body" style="border-radius: 0 !important">
+    <span>{{ message }}</span>
+  </div>
+
+  <div class="card-footer card-confirmation-footer" style="background: white !important" #dialogConfirm>
+    <button
+      type="button"
+      class="btn btn-light btn-elevate me-1"
+      (click)="onConfirmClick(true)"
+    >
+      {{ cancelButtonText }}</button
+    >&nbsp;
+    <button
+      type="button"
+      class="btn btn-danger btn-elevate"
+      (click)="onConfirmClick(false)"
+      cdkFocusInitial
+    >
+      {{ confirmButtonText }}
+    </button>
+  </div>
+</div>

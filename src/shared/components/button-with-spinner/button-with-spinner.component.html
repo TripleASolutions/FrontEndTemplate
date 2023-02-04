@@ -1,0 +1,9 @@
+<button
+  (click)="onSubmit()"
+  class="btn btn-success font-weight-bold text-uppercase px-9 py-4"
+  data-wizard-type="action-submit"
+  [disabled]="submitted">
+  <span *ngIf="!submitted">{{ title }}</span>
+  <span *ngIf="submitted" class="spinner-border spinner-border-sm"></span>
+</button>
+

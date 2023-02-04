@@ -1,0 +1,51 @@
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.mat-dialog-container {
+  padding: 0px !important;
+  display: contents !important;
+}
+
+.dialog-add-customer,
+.dialog-add-outcome,
+.dialog-add-product,
+.dialog-add-pjp,
+.dialog-add-Team {
+  width: 750px !important;
+  display: block !important;
+}
+.dialog-add-survey {
+  width: 1150px !important;
+  display: block !important;
+}
+.dialog-duplicate-survey {
+  width: 500px !important;
+  display: block !important;
+}
+
+.custom-tooltip {
+  background-color: transparent !important;
+  border: 1px solid #eb4e3d !important;
+  border-radius: 1em !important;
+  color: #eb4e3d !important;
+}
+/*VARIABLE*/
+$btWidthHeight: 50px;
+$btThickness: 3px;
+$btColor: #005b83;
+$btHoverColor: #0291bd;
+$btActiveColor: #02b2e8;
+$btTransiTime: 0.05s;
+/*END VARIABLE
+---------------------------------------------------------*/
+
+/*GENERAL*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #e8e8e8;
+}

@@ -1,0 +1,250 @@
+<div
+  class="card card-custom gutter-b"
+  style="border: none !important; box-shadow: none"
+>
+  <div class="card-header" style="border: none !important">
+    <div class="card-title">
+      <h3 class="card-label">{{ PageTitle }}s</h3>
+    </div>
+    <div class="card-toolbar" *ngIf="!NoDialog">
+      <a
+        type="button"
+        class="btn btn-primary"
+        (click)="openAddEditDialog(false, null!)"
+        >Add {{ PageTitle }}</a
+      >
+    </div>
+    <div class="card-toolbar" *ngIf="NoDialog && isReports">
+      <strong *ngIf="isReportLoading" class="text-success pe-5"
+        >File downloaded successfully!</strong
+      >
+      <div
+        #tooltip="matTooltip"
+        matTooltip="Change filters and download again !  "
+        matTooltipPosition="above"
+        matTooltipClass="custom-tooltip text-danger"
+        [matTooltipDisabled]="invalidExportData() ? false : true"
+        aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
+      >
+        <button
+          class="btn btn-primary"
+          (click)="ExtractReport()"
+          [disabled]="
+            invalidExportData() ||
+            (service?.items$ | async)?.length == 0 ||
+            isLoading
+          "
+        >
+          Export Data
+          <span
+            [inlineSVG]="'./assets/media/roche/reports.svg'"
+            [cacheSVG]="true"
+            class="svg-icon svg-icon-md"
+          ></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <!-- <ng-container *ngIf="grouping?.getSelectedRowsCount()">
+      <div class="form">
+        <div
+          class="row align-items-center form-group-actions margin-top-20 margin-bottom-20"
+        >
+          <div class="col-xl-12">
+            <div class="form-group-inline">
+              <div class="form-label form-label-no-wrap">
+                <label class="font-bold font-danger"
+                  ><span
+                    >Selected records count:
+                    <b>{{ grouping.getSelectedRowsCount() }}</b></span
+                  ></label
+                >
+              </div>
+              <div>
+                <button
+                  type="button"
+                  class="btn btn-danger font-weight-bolder font-size-sm me-1"
+                  (click)="deleteSelected()"
+                >
+                  <i class="fa fa-trash"></i> Delete All</button
+                >&nbsp;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container> -->
+
+    <div
+      class="table-responsive angular-bootstrap-table"
+      #tableScroll
+      style="scroll-behavior: smooth !important"
+      appHorizontalScroll
+    >
+      <table
+        class="table table-head-custom table-vertical-center overflow-hidden"
+      >
+        <thead>
+          <!-- <th class="selection-cell-header" data-row-selection="true">
+            <label class="checkbox checkbox-single"
+              ><input
+                type="checkbox"
+                (click)="grouping?.selectAllRows()"
+                [checked]="grouping?.checkAreAllRowsSelected()" /><span></span
+            ></label>
+          </th> -->
+          <!-- <th class="p-3">#</th> -->
+          <th
+            class="cursor-pointer"
+            *ngFor="let col of columns"
+            [ngStyle]="{
+              'min-width.px': col.width
+                ? col.width*10
+                : col.header.length > 2 && col.header.length < 8
+                ? col.header.length * 21
+                : col.header.length * 16
+            }"
+          >
+            {{ col.header }}
+            <app-sort-icon
+              [column]="col.field"
+              [activeColumn]="sorting.column"
+              [activeDirection]="sorting.direction"
+              (sort)="sort($event)"
+            ></app-sort-icon>
+          </th>
+          <th *ngIf="!isReports" style="min-width: 150px !important">
+            ACTIONS
+          </th>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of service?.items$ | async; let index = index">
+            <!-- <td class="selection-cell">
+              <label class="checkbox checkbox-single"
+                ><input
+                  type="checkbox"
+                  (click)="grouping?.selectRow(item.id?item.id:item.productId)"
+                  [checked]="grouping?.isRowSelected(item.id?item.id:item.productId)"
+                />
+                <span></span>
+              </label>
+            </td> -->
+            <!-- <td>{{ index + 1 }}</td> -->
+            <td
+              [class]="
+                field.field == sorting.column ? 'text-primary fw-bolder' : ''
+              "
+              *ngFor="let field of columns"
+            >
+              <ng-container> </ng-container>
+
+              <ng-container [ngSwitch]="field.type && field.type">
+                <ng-container *ngSwitchCase="'bool'">
+                  <span
+                    class="label label-lg label-inline"
+                    [class.label-light-danger]="item[field.field] === false"
+                    [class.label-light-success]="item[field.field] === true"
+                  >
+                    <ng-container>
+                      {{
+                        item[field.field] === true ? "Active" : "Inactive"
+                      }}</ng-container
+                    >
+                  </span>
+                </ng-container>
+                <ng-container *ngSwitchCase="'mergMonth'">
+                  <ng-container [ngSwitch]="item[field.field]">
+                    {{ item.month | slice: 0:3 }} {{ item.year }}
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngSwitchCase="'Date'">
+                  <ng-container [ngSwitch]="item[field.field]">
+                    {{ item[field.field] | date: "dd-MM-yyyy, h:mm a " }}
+                  </ng-container>
+                </ng-container>
+                <ng-container *ngSwitchDefault>{{
+                  !item[field.field] || item[field.field] == "null"
+                    ? "-"
+                    : item[field.field]
+                }}</ng-container>
+              </ng-container>
+            </td>
+            <td *ngIf="!isReports">
+              <a
+                [title]="'View ' + PageTitle"
+                class="btn btn-icon btn-light btn-hover-primary btn-sm"
+                (click)="View(item)"
+              >
+                <span
+                  [inlineSVG]="'./assets/media/svg/icons/General/Visible.svg'"
+                  [cacheSVG]="true"
+                  class="svg-icon svg-icon-sm svg-icon-primary"
+                >
+                </span>
+              </a>
+              <a
+                [title]="'Edit ' + PageTitle"
+                class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+                (click)="openAddEditDialog(true, item)"
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/svg/icons/Communication/Write.svg'
+                  "
+                  [cacheSVG]="true"
+                  class="svg-icon svg-icon-sm svg-icon-primary"
+                >
+                </span>
+              </a>
+              <a
+                *ngIf="isDuplicateOption"
+                [title]="'Duplicate ' + PageTitle"
+                class="btn btn-icon btn-light btn-hover-primary btn-sm mx-3"
+                (click)="openDuplicateDialog(item)"
+              >
+                <span
+                  [inlineSVG]="
+                    './assets/media/svg/icons/Communication/Clipboard-list.svg'
+                  "
+                  [cacheSVG]="true"
+                  class="svg-icon svg-icon-sm svg-icon-primary"
+                >
+                </span>
+              </a>
+              <!-- <a
+                [title]="'Delete ' + title"
+                class="btn btn-icon btn-light btn-hover-danger btn-sm"
+                (click)="deleteItem(item.id?item.id:item.productId)"
+              >
+                <span
+                  [inlineSVG]="'./assets/media/svg/icons/General/Trash.svg'"
+                  [cacheSVG]="true"
+                  class="svg-icon svg-icon-sm svg-icon-danger"
+                >
+                </span>
+              </a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <tr
+        *ngIf="service?.items$ | async as itmes"
+        class="d-flex justify-content-center"
+      >
+        <strong *ngIf="itmes.length === 0 && !isLoading" class="text-danger"
+          >No records yet !</strong
+        >
+      </tr>
+    </div>
+
+    <app-paginator
+      *ngIf="paginator"
+      class="d-flex justify-content-between align-items-center flex-wrap"
+      [paginator]="paginator"
+      [isLoading]="isLoading"
+      (paginate)="paginate($event)"
+    ></app-paginator>
+  </div>
+</div>
