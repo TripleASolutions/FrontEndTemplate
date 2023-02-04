@@ -2,6 +2,10 @@
    width: 100% !important;
  }
 
+ .mat-form-field-infix {
+   padding: .5em 0 1em 0 !important
+ }
+
  .mat-form-field-suffix {
    align-self: center !important;
  }
@@ -35,4 +39,99 @@
  .invalid-input {
    font-size: 2rem !important;
    color: #EB4E3D !important;
+ }
+
+ // .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label,
+ // .mat-form-field-appearance-outline.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label{
+ //   display: none !important;
+ // }
+
+
+ .login-form .mat-form-field-appearance-outline .mat-form-field-wrapper .mat-form-field-outline {
+   background: #F6FAFC !important;
+
+   border-color: rgba(0, 0, 0, 0.15) !important;
+ 
+ }
+
+  .login-form  .mat-form-field-appearance-outline .mat-form-field-infix {
+   padding: 1em 0 1.5em 0 !important;
+ }
+
+ .mat-form-field-appearance-outline .mat-form-field-outline {
+   background: transparent !important;
+
+   border: 1px solid #babecc !important;
+   border-radius: .5em !important;
+
+ }
+
+ .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-outline {
+   border: none !important;
+ }
+
+ .mat-form-field-disabled .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-outline .mat-form-field-outline-end {
+   background: transparent !important;
+   border: none !important;
+   border-left: none !important;
+   border-top-right-radius: 12px !important;
+   border-bottom-right-radius: 12px !important;
+ }
+
+ .mat-input-element:disabled,
+ .mat-form-field-type-mat-native-select.mat-form-field-disabled .mat-form-field-infix::after {
+   color: black !important;
+   font-weight: bolder !important;
+ }
+
+ .mat-select-disabled .mat-select-value {
+   color: black !important;
+   font-weight: bolder !important;
+ }
+
+ .mat-form-field .mat-select.mat-select-disabled .mat-select-arrow {
+   color: transparent !important;
+ }
+
+ .mat-form-field-disabled .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-outline .mat-form-field-outline-start {
+   background: transparent !important;
+
+   border: none !important;
+   border-right: none !important;
+ }
+
+ .mat-form-field-disabled .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-outline .mat-form-field-outline-gap {
+   background: transparent !important;
+   border: none !important;
+
+ }
+
+ .mat-form-field-disabled .mat-form-field-wrapper .mat-form-field-flex .mat-form-field-outline .mat-form-field-outline {
+
+   border-radius: 0 !important;
+ }
+
+ .mat-form-field-label[ng-reflect-disabled="false"]:not(.mat-form-field-empty) mat-label {
+   background-color: transparent !important;
+ }
+
+ .mat-button-focus-overlay {
+   background-color: transparent !important;
+ }
+
+ .paginator-form .mat-form-field-flex .mat-form-field-outline {
+   height: 70% !important;
+   margin-top: .5em !important;
+
+ }
+
+ .paginator-form .mat-form-field-flex .mat-form-field-outline-thick {
+   height: 70% !important;
+   margin-top: .5em !important;
+
+ }
+
+ .paginator-form-options {
+
+   height: 2em !important;
  }

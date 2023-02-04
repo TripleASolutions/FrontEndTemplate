@@ -49,9 +49,10 @@ import { ValidationComponent } from '../validation/validation.component';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { MomentUtcDateAdapter } from 'src/shared/services/moment-utc-date-adapter.service';
 import { DirectivesModule } from 'src/shared/directives/directive.module';
+import { FormGroupMaterialModule } from '../form-group-material/FormGroupMaterialModule';
 
 @NgModule({
-  declarations: [FormGroupMaterialComponent, ValidationComponent
+  declarations: [  ValidationComponent
   ],
   imports: [
     A11yModule,
@@ -146,10 +147,10 @@ import { DirectivesModule } from 'src/shared/directives/directive.module';
     OverlayModule,
     PortalModule,
     ScrollingModule,
-    FormGroupMaterialComponent,
+    FormGroupMaterialModule,
     ValidationComponent,
   ],
-  entryComponents: [FormGroupMaterialComponent, ValidationComponent],
+  entryComponents: [ ValidationComponent],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: "en-GB" },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },

@@ -30,12 +30,7 @@ export class HomeDashboardComponent implements OnInit {
   }
   createFiltrationForm() {
     this.filterGroup = this.fb.group({
-      userName: new FormControl(
-        null,
-        Validators.compose([
-          Validators.required,
-         ])
-      ),
+      userName: null,
       mobileNo: null,
       active: null,
     });

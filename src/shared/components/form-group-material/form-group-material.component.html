@@ -1,18 +1,32 @@
+<mat-label
+  *ngIf="!isSearch"
+  style="font-weight: bolder"
+  [style.color]="isLogin ? 'black' : '#0078C1'"
+  >{{ fieldLabel }}</mat-label
+>
+<span
+  *ngIf="requiredField && !isControlTouchedValid() && !controlIsDisabled()"
+  matSuffix
+  title="Required"
+  [inlineSVG]="'./assets/media/svg/icons/General/asterisk.svg'"
+  [cacheSVG]="true"
+  class="ps-3 svg-icon svg-icon-ss svg-icon-primary"
+>
+</span>
 <mat-form-field
   [color]="'Accent'"
   appearance="outline"
   *ngIf="inputType != 'dropdown'"
 >
-  <mat-label>{{ fieldLabel }}</mat-label>
+  <!-- <mat-label>{{ fieldLabel }}</mat-label> -->
   <input
     matInput
     [formControlName]="controlName"
     *ngIf="inputType != 'textarea' && inputType != 'dropdown'"
-    [required]="requiredField"
+    [required]="requiredField ? true : false"
+    [type]="inputType == 'password' && hide ? 'password' : ''"
     placeholder="{{ inputPlaceholder }}"
     [maxlength]="maxlengthLimit"
-    [required]="requiredField"
-    placeholder="{{ inputPlaceholder }}"
     [OnlyNumber]="OnlyNumber"
     [maxValue]="maxValue"
     [minValue]="minValue"
@@ -20,7 +34,12 @@
 
   <textarea
     matInput
-    [required]="requiredField"
+    Input
+    rows="3"
+    cols="60"
+    [required]="requiredField ? true : false"
+    [mat-autosize]="false"
+    [maxlength]="150"
     [formControlName]="controlName"
     *ngIf="inputType == 'textarea'"
     placeholder="{{ inputPlaceholder }}"
@@ -36,6 +55,20 @@
     style="color: #808285 !important; font-size: 1.5em !important"
     >{{ matPrefixIcon }}</mat-icon
   >
+  <span
+    *ngIf="inputType == 'password'"
+    matSuffix
+    (click)="hide = !hide"
+    [inlineSVG]="
+      hide
+        ? './assets/media/svg/icons/General/visibility-off.svg'
+        : './assets/media/svg/icons/General/Visible.svg'
+    "
+    [cacheSVG]="true"
+    class="svg-icon svg-icon-md svg-icon-gray-500 ms-1 me-3"
+  >
+  </span>
+
   <mat-error
     class="text-center"
     *ngIf="FormGroup && controlHasError('required')"
@@ -45,25 +78,30 @@
   <mat-error class="text-center" *ngIf="FormGroup && isControlInvalid()">
     <strong> {{ fieldLabel }} is Invalid </strong>
   </mat-error>
+  <mat-error class="text-center" *ngIf="FormGroup && controlHasWhiteSpace()">
+    <strong>
+      {{ FormGroup && controlHasWhiteSpace() ? controlHasWhiteSpace() : "" }}
+    </strong>
+  </mat-error>
   <mat-error
     class="text-center"
     *ngIf="FormGroup && controlHasError('minlength')"
   >
     <strong>
-      {{ fieldLabel }} should have at least {{ fieldMinLingth }} symbols</strong
+      {{ fieldLabel }} should have at least {{ fieldMinLength }} symbols</strong
     >
   </mat-error>
   <mat-error
     class="text-center"
-    *ngIf="FormGroup && controlHasError('maxLength')"
+    *ngIf="FormGroup && controlHasError('maxlength')"
   >
     <strong>
-      {{ fieldLabel }} should have maximum {{ fieldMaxLingth }} symbols
+      {{ fieldLabel }} should have maximum {{ fieldMaxLength }} symbols
     </strong>
   </mat-error>
   <mat-error class="text-center" *ngIf="FormGroup && controlHasMinValError()">
     <strong>
-      {{ fieldLabel }} should have minimum of {{ minmumValueNumber }}
+      {{ fieldLabel }} should have minimum of {{ minimumValueNumber }}
       {{ matSuffix ? matSuffix : "" }}
     </strong>
   </mat-error>
@@ -86,7 +124,7 @@
     matSuffix
     >youtube_searched_for</mat-icon
   >
-  <mat-icon
+  <!-- <mat-icon
     [@fade]="true"
     class="valid-input"
     *ngIf="
@@ -113,7 +151,7 @@
     matSuffix
     #error
     >error_outline</mat-icon
-  >
+  > -->
 </mat-form-field>
 
 <mat-form-field
@@ -121,11 +159,12 @@
   appearance="outline"
   *ngIf="inputType == 'dropdown' && dataSource"
 >
-  <mat-label class="select-input">{{ fieldLabel }}</mat-label>
+  <!-- <mat-label class="select-input">{{ fieldLabel }}</mat-label> -->
   <mat-select
     (selectionChange)="onChangeValue($event)"
     [formControlName]="controlName"
-    [required]="requiredField"
+    [required]="requiredField ? true : false"
+    [placeholder]="fieldLabel"
   >
     <mat-option [value]="data[fieldValue]" *ngFor="let data of dataSource">{{
       data[fieldName]
@@ -149,7 +188,7 @@
     matSuffix
     >check_circle_outline</mat-icon
   > -->
-  <mat-icon
+  <!-- <mat-icon
     [@fade]="true"
     *ngIf="
       FormGroup &&
@@ -162,5 +201,5 @@
     matSuffix
     #error
     >error_outline</mat-icon
-  >
+  > -->
 </mat-form-field>

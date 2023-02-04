@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { InlineSVGModule } from 'ng-inline-svg';
-import { DirectivesModule } from 'shared/directives/directive.module';
-import { FormGroupMaterialComponent } from './form-group-material.component';
+import { DirectivesModule } from 'src/shared/directives/directive.module';
+ import { FormGroupMaterialComponent } from './form-group-material.component';
 
 @NgModule({
   declarations: [FormGroupMaterialComponent],
